@@ -9,18 +9,17 @@ export default async function Page(props: { params: Promise<{ region: string }> 
   ]);
   const visitorId = cookieStore.get('visitor_id')?.value;
 
+  const context = {
+    visitor_id: visitorId || '',
+    region: params.region,
+  }
+
   const [showEnterprisePlan, subscriptionHighlight] = await Promise.all([
     client.getObjectValue<{ enabled: boolean, price: string }>('show-enterprise-plan', {
       enabled: false,
       price: '-',
-    }, {
-      visitor_id: visitorId || '',
-      region: params.region,
-    }),
-    client.getBooleanValue('subscription-highlight.enabled', false, {
-      visitor_id: visitorId || '',
-      region: params.region,
-    })
+    }, context),
+    client.getBooleanValue('subscription-highlight.enabled', false, context)
   ]);
 
   return (
