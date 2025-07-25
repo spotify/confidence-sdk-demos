@@ -16,7 +16,7 @@ The application evaluates feature flags using a context that includes `visitor_i
 
 1. Clone the repository and navigate to the project directory:
 ```bash
-cd confidence-web-demo/nextjs
+cd confidence-sdk-demos/nextjs
 ```
 
 2. Install dependencies:
