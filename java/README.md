@@ -1,106 +1,86 @@
-# Subscription API
+# Confidence Java API Demo
 
-A Spring Boot REST API that provides subscription and plan data with optional region filtering.
+A Spring Boot REST API demonstrating Confidence feature flags with subscription plan management and regional filtering.
 
-## Prerequisites
+## Running the Project Locally
 
+### Prerequisites
 - Java 21 or higher
 - Maven 3.6 or higher
 
-## Getting Started
+### Setup
+1. **Clone and navigate to the project**
+   ```bash
+   cd java
+   ```
 
-### 1. Clone and navigate to the project
-```bash
-cd java
-```
+2. **Build the project**
+   ```bash
+   mvn clean compile
+   ```
 
-### 2. Build the project
-```bash
-mvn clean compile
-```
-
-### 3. Run the application
-```bash
-mvn spring-boot:run
-```
+3. **Run the application**
+   ```bash
+   mvn spring-boot:run
+   ```
 
 The API will start on `http://localhost:8080`
 
 ## API Endpoints
 
-### GET /subscriptions
-Returns a list of subscriptions.
-
-**Optional Query Parameters:**
-- `region` - Filter subscriptions by region (Available: `na`, `eu`, `ap`, `sa`, `af`)
-
-**Examples:**
-```bash
-# Get all subscriptions
-curl http://localhost:8080/subscriptions
-
-# Get subscriptions for a specific region
-curl http://localhost:8080/subscriptions?region=na
-```
-
 ### GET /plans
-Returns a list of plans.
+Returns subscription plans with optional region filtering and feature flag evaluation.
 
-**Optional Query Parameters:**
-- `region` - Filter plans by region (Available: `na`, `eu`, `ap`, `sa`, `af`)
+**Query Parameters:**
+- `region` (optional) - Filter by region: `na`, `eu`, `ap`, `sa`, `af`
+
+**Headers:**
+- `X-VISITOR-ID` (optional) - Visitor identifier for feature flag targeting
 
 **Examples:**
 ```bash
 # Get all plans
 curl http://localhost:8080/plans
 
-# Get plans for a specific region
+# Get plans for specific region
 curl http://localhost:8080/plans?region=eu
 
-# Get plans with a random visitor ID (for feature flag evaluation)
+# Get plans with visitor targeting
 curl -H "X-VISITOR-ID: $(uuidgen)" http://localhost:8080/plans?region=na
-
-# Alternative using random string (for systems without uuidgen)
-curl -H "X-VISITOR-ID: visitor-$(date +%s)-$(shuf -i 1000-9999 -n 1)" http://localhost:8080/plans
 ```
 
-## Sample Data
+## Feature Flags
 
-The API returns mock data for:
-- **Subscriptions**: Basic, Pro, Enterprise, Starter, Premium, Business, and Regional plans across different regions
-- **Plans**: Detailed plan information including features, pricing, and billing cycles
+### `show-enterprise-plan`
+Controls whether the Enterprise plan is displayed to users.
 
-**Available Regions:**
-- `na` - North America
-- `eu` - Europe
-- `ap` - Asia Pacific
-- `sa` - South America
-- `af` - Africa
-
-## Configuration
-
-The application runs on port 8080 by default. You can change this in `src/main/resources/application.properties`:
-
-```properties
-server.port=8080
+**Schema:**
+```json
+{
+  "enabled": boolean,
+  "price": string (optional)
+}
 ```
 
-## Project Structure
+**Purpose:** Dynamically show/hide the Enterprise plan and customize its pricing based on visitor context and region.
 
-```
-src/
-├── main/
-│   ├── java/com/confidence/subscriptionapi/
-│   │   ├── SubscriptionApiApplication.java    # Main application class
-│   │   ├── controller/
-│   │   │   └── ApiController.java             # REST endpoints
-│   │   ├── model/
-│   │   │   ├── Subscription.java              # Subscription model
-│   │   │   └── Plan.java                      # Plan model
-│   │   └── service/
-│   │       ├── SubscriptionService.java       # Subscription business logic
-│   │       └── PlanService.java               # Plan business logic
-│   └── resources/
-│       └── application.properties             # Application configuration
-└── pom.xml                                    # Maven dependencies
-```
+## Architecture
+
+- **Framework:** Spring Boot 3.2.0
+- **Build Tool:** Maven
+- **Feature Flags:** Confidence SDK via OpenFeature
+- **Dependency Injection:** Spring IoC container
+- **Data:** In-memory mock data with regional distribution
+
+## Key Components
+
+- **OpenFeature Integration:** Singleton client with startup initialization
+- **Regional Data Model:** Plans support multiple regions via List<String>
+- **Context Evaluation:** Visitor ID and region-based feature flag targeting
+- **REST API:** Clean endpoint design with optional query parameters
+
+## Documentation
+
+- [Confidence Documentation](https://docs.confidence.spotify.com/)
+- [OpenFeature Java SDK](https://openfeature.dev/docs/reference/technologies/server/java)
+- [Spring Boot Documentation](https://spring.io/projects/spring-boot)
