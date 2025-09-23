@@ -6,20 +6,20 @@ public class Plan {
     private Long id;
     private String name;
     private String description;
-    private Double price;
+    private String price;
     private String billingCycle;
-    private String region;
+    private List<String> regions;
     private List<String> features;
 
     public Plan() {}
 
-    public Plan(Long id, String name, String description, Double price, String billingCycle, String region, List<String> features) {
+    public Plan(Long id, String name, String description, String price, String billingCycle, List<String> regions, List<String> features) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.billingCycle = billingCycle;
-        this.region = region;
+        this.regions = regions;
         this.features = features;
     }
 
@@ -47,11 +47,11 @@ public class Plan {
         this.description = description;
     }
 
-    public Double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
@@ -63,12 +63,12 @@ public class Plan {
         this.billingCycle = billingCycle;
     }
 
-    public String getRegion() {
-        return region;
+    public List<String> getRegions() {
+        return regions;
     }
 
-    public void setRegion(String region) {
-        this.region = region;
+    public void setRegions(List<String> regions) {
+        this.regions = regions;
     }
 
     public List<String> getFeatures() {

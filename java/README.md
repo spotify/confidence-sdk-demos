@@ -56,6 +56,12 @@ curl http://localhost:8080/plans
 
 # Get plans for a specific region
 curl http://localhost:8080/plans?region=eu
+
+# Get plans with a random visitor ID (for feature flag evaluation)
+curl -H "X-VISITOR-ID: $(uuidgen)" http://localhost:8080/plans?region=na
+
+# Alternative using random string (for systems without uuidgen)
+curl -H "X-VISITOR-ID: visitor-$(date +%s)-$(shuf -i 1000-9999 -n 1)" http://localhost:8080/plans
 ```
 
 ## Sample Data
