@@ -5,8 +5,8 @@ import dev.openfeature.sdk.Client;
 import dev.openfeature.sdk.EvaluationContext;
 import dev.openfeature.sdk.ImmutableContext;
 import dev.openfeature.sdk.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import dev.openfeature.sdk.OpenFeatureAPI;
 import dev.openfeature.sdk.Structure;
 
 import java.util.Map;
@@ -17,9 +17,17 @@ import java.util.stream.Collectors;
 
 @Service
 public class PlanService {
-        final Plan enterprisePlan = new Plan(3L, "Enterprise", "Enterprise plan for large organizations", "$49.99", "monthly",
-                List.of("eu", "na"),
-                List.of("Unlimited users", "500GB storage", "24/7 phone support", "Custom integrations", "SLA"));
+
+    private final Client openFeatureClient;
+
+    @Autowired
+    public PlanService(Client openFeatureClient) {
+        this.openFeatureClient = openFeatureClient;
+    }
+
+    final Plan enterprisePlan = new Plan(3L, "Enterprise", "Enterprise plan for large organizations", "$49.99", "monthly",
+            List.of("eu", "na"),
+            List.of("Unlimited users", "500GB storage", "24/7 phone support", "Custom integrations", "SLA"));
 
     private final List<Plan> plans = List.of(
         new Plan(1L, "Basic", "Basic plan with essential features", "$9.99", "monthly",
@@ -53,7 +61,7 @@ public class PlanService {
         if (visitorId == null || visitorId.trim().isEmpty()) {
             visitorId = "anonymous";
         }
-        Client client = OpenFeatureAPI.getInstance().getClient();
+        Client client = openFeatureClient;
         Map<String, Value> contextAttributes = Map.of(
                 "visitor_id", new Value(visitorId),
                 "region", new Value(region != null ? region : "unknown")
