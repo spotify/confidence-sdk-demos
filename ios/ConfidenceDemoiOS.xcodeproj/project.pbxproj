@@ -1,0 +1,441 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AA001 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA002 /* App.swift */; };
+		AA003 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA004 /* ContentView.swift */; };
+		AA005 /* DemoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA006 /* DemoScreen.swift */; };
+		AA007 /* SubscriptionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA008 /* SubscriptionCard.swift */; };
+		AA009 /* RegionOverflowMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA010 /* RegionOverflowMenu.swift */; };
+		AA011 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA012 /* Theme.swift */; };
+		AA013 /* DemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA014 /* DemoViewModel.swift */; };
+		AA015 /* DemoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA016 /* DemoRepository.swift */; };
+		AA017 /* OpenFeatureInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA018 /* OpenFeatureInitializer.swift */; };
+		AA019 /* SubscriptionPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA020 /* SubscriptionPlan.swift */; };
+		AA021 /* RegionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA022 /* RegionInfo.swift */; };
+		AA023 /* InitializationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA024 /* InitializationState.swift */; };
+		AA025 /* Confidence in Frameworks */ = {isa = PBXBuildFile; productRef = AA026 /* Confidence */; };
+		AA027 /* ConfidenceOpenFeature in Frameworks */ = {isa = PBXBuildFile; productRef = AA028 /* ConfidenceOpenFeature */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AA029 /* ConfidenceDemoiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConfidenceDemoiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA002 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidenceDemoApp/App.swift; sourceTree = "<group>"; };
+		AA004 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidenceDemoApp/ContentView.swift; sourceTree = "<group>"; };
+		AA006 /* DemoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidenceDemoApp/UI/DemoScreen.swift; sourceTree = "<group>"; };
+		AA008 /* SubscriptionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidenceDemoApp/UI/Components/SubscriptionCard.swift; sourceTree = "<group>"; };
+		AA010 /* RegionOverflowMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidenceDemoApp/UI/Components/RegionOverflowMenu.swift; sourceTree = "<group>"; };
+		AA012 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidenceDemoApp/UI/Theme.swift; sourceTree = "<group>"; };
+		AA014 /* DemoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidenceDemoApp/ViewModels/DemoViewModel.swift; sourceTree = "<group>"; };
+		AA016 /* DemoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidenceDemoApp/Data/DemoRepository.swift; sourceTree = "<group>"; };
+		AA018 /* OpenFeatureInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidenceDemoApp/Data/OpenFeatureInitializer.swift; sourceTree = "<group>"; };
+		AA020 /* SubscriptionPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidenceDemoApp/Models/SubscriptionPlan.swift; sourceTree = "<group>"; };
+		AA022 /* RegionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidenceDemoApp/Models/RegionInfo.swift; sourceTree = "<group>"; };
+		AA024 /* InitializationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidenceDemoApp/Models/InitializationState.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA030 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA025 /* Confidence in Frameworks */,
+				AA027 /* ConfidenceOpenFeature in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA031 = {
+			isa = PBXGroup;
+			children = (
+				AA032 /* ConfidenceDemoiOS */,
+				AA033 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AA032 /* ConfidenceDemoiOS */ = {
+			isa = PBXGroup;
+			children = (
+				AA002 /* App.swift */,
+				AA004 /* ContentView.swift */,
+				AA034 /* UI */,
+				AA035 /* ViewModels */,
+				AA036 /* Data */,
+				AA037 /* Models */,
+			);
+			name = ConfidenceDemoiOS;
+			sourceTree = "<group>";
+		};
+		AA033 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA029 /* ConfidenceDemoiOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA034 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				AA006 /* DemoScreen.swift */,
+				AA012 /* Theme.swift */,
+				AA038 /* Components */,
+			);
+			sourceTree = "<group>";
+		};
+		AA035 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				AA014 /* DemoViewModel.swift */,
+			);
+			sourceTree = "<group>";
+		};
+		AA036 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				AA016 /* DemoRepository.swift */,
+				AA018 /* OpenFeatureInitializer.swift */,
+			);
+			sourceTree = "<group>";
+		};
+		AA037 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AA020 /* SubscriptionPlan.swift */,
+				AA022 /* RegionInfo.swift */,
+				AA024 /* InitializationState.swift */,
+			);
+			sourceTree = "<group>";
+		};
+		AA038 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AA008 /* SubscriptionCard.swift */,
+				AA010 /* RegionOverflowMenu.swift */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AA039 /* ConfidenceDemoiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA040 /* Build configuration list for PBXNativeTarget "ConfidenceDemoiOS" */;
+			buildPhases = (
+				AA041 /* Sources */,
+				AA030 /* Frameworks */,
+				AA042 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ConfidenceDemoiOS;
+			packageProductDependencies = (
+				AA026 /* Confidence */,
+				AA028 /* ConfidenceOpenFeature */,
+			);
+			productName = ConfidenceDemoiOS;
+			productReference = AA029 /* ConfidenceDemoiOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA043 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					AA039 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = AA044 /* Build configuration list for PBXProject "ConfidenceDemoiOS" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AA031;
+			packageReferences = (
+				AA045 /* XCRemoteSwiftPackageReference "confidence-sdk-swift" */,
+			);
+			productRefGroup = AA033 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA039 /* ConfidenceDemoiOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AA042 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA041 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA003 /* ContentView.swift in Sources */,
+				AA005 /* DemoScreen.swift in Sources */,
+				AA007 /* SubscriptionCard.swift in Sources */,
+				AA009 /* RegionOverflowMenu.swift in Sources */,
+				AA011 /* Theme.swift in Sources */,
+				AA013 /* DemoViewModel.swift in Sources */,
+				AA015 /* DemoRepository.swift in Sources */,
+				AA017 /* OpenFeatureInitializer.swift in Sources */,
+				AA019 /* SubscriptionPlan.swift in Sources */,
+				AA021 /* RegionInfo.swift in Sources */,
+				AA023 /* InitializationState.swift in Sources */,
+				AA001 /* App.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		AA046 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AA047 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AA048 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.ConfidenceDemoiOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AA049 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.ConfidenceDemoiOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA044 /* Build configuration list for PBXProject "ConfidenceDemoiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA046 /* Debug */,
+				AA047 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA040 /* Build configuration list for PBXNativeTarget "ConfidenceDemoiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA048 /* Debug */,
+				AA049 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AA045 /* XCRemoteSwiftPackageReference "confidence-sdk-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/spotify/confidence-sdk-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AA026 /* Confidence */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA045 /* XCRemoteSwiftPackageReference "confidence-sdk-swift" */;
+			productName = Confidence;
+		};
+		AA028 /* ConfidenceOpenFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA045 /* XCRemoteSwiftPackageReference "confidence-sdk-swift" */;
+			productName = ConfidenceOpenFeature;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = AA043 /* Project object */;
+}
