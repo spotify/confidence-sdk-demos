@@ -9,3 +9,9 @@ See the Next.js demo: [nextjs/](./nextjs/)
 
 ### Java Spring Boot
 See the Java Spring Boot demo: [java/](./java/)
+
+### Go
+See the Go demo: [go/](./go/)
+
+### Python
+See the Python demo: [python/](./python/)
