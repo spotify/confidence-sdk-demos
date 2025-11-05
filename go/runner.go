@@ -20,7 +20,7 @@ import (
 // EvaluationResult contains the details of a feature flag evaluation
 type EvaluationResult struct {
 	VisitorID string
-	Country   string
+	Region    string
 	FlagValue string
 }
 
@@ -37,7 +37,7 @@ type RunConfig struct {
 type RunStats struct {
 	TotalRuns      int
 	SuccessfulRuns int
-	Countries      map[string]int
+	Regions        map[string]int
 	FlagValues     map[string]int
 }
 
@@ -75,21 +75,21 @@ func evaluateFeatureFlag() (*EvaluationResult, error) {
 	// Generate a random visitor ID for this invocation
 	visitorID := uuid.New().String()
 
-	// Define country codes and randomly select one
-	countryCodes := []string{"US", "SE", "GB"}
-	selectedCountry := countryCodes[rand.Intn(len(countryCodes))]
+	// Define regions and randomly select one (matching flag targeting rules)
+	regions := []string{"na", "eu", "asia"}
+	selectedRegion := regions[rand.Intn(len(regions))]
 
-	// Create evaluation context with the visitor ID and country
+	// Create evaluation context with the visitor ID and region
 	attributes := map[string]interface{}{
 		"visitor_id": visitorID,
-		"country":    selectedCountry,
+		"region":     selectedRegion,
 	}
 	evaluationContext := o.NewEvaluationContext(visitorID, attributes)
 
 	// Resolve the feature flag using OpenFeature API
 	flagValue, err := client.StringValue(
 		context.Background(),
-		"nicklas-test-flag.message",
+		"show-enterprise-plan.price",
 		"default",
 		evaluationContext,
 	)
@@ -100,7 +100,7 @@ func evaluateFeatureFlag() (*EvaluationResult, error) {
 	// Return evaluation details
 	return &EvaluationResult{
 		VisitorID: visitorID,
-		Country:   selectedCountry,
+		Region:    selectedRegion,
 		FlagValue: flagValue,
 	}, nil
 }
@@ -124,7 +124,7 @@ func main() {
 			log.Fatalf("Evaluation failed: %v", err)
 		}
 		fmt.Printf("Visitor ID: %s\n", result.VisitorID)
-		fmt.Printf("Country: %s\n", result.Country)
+		fmt.Printf("Region: %s\n", result.Region)
 		fmt.Printf("Feature flag value: %s\n", result.FlagValue)
 		return
 	}
@@ -176,7 +176,7 @@ func runEvaluations(config *RunConfig) *RunStats {
 
 	stats := &RunStats{
 		TotalRuns:  config.NumRuns,
-		Countries:  make(map[string]int),
+		Regions:    make(map[string]int),
 		FlagValues: make(map[string]int),
 	}
 
@@ -191,18 +191,18 @@ func runEvaluations(config *RunConfig) *RunStats {
 		}
 
 		stats.SuccessfulRuns++
-		stats.Countries[result.Country]++
+		stats.Regions[result.Region]++
 		stats.FlagValues[result.FlagValue]++
 
 		if config.Verbose {
-			fmt.Printf("Run %2d/%d: Country=%s | Flag=%-8s | Visitor=%s... | Time=%s\n",
+			fmt.Printf("Run %2d/%d: Region=%s | Flag=%-12s | Visitor=%s... | Time=%s\n",
 				i+1, config.NumRuns,
-				result.Country,
+				result.Region,
 				result.FlagValue,
 				result.VisitorID[:8],
 				runStart.Format("15:04:05"))
 		} else {
-			fmt.Printf("Run %2d/%d: %s -> %s\n", i+1, config.NumRuns, result.Country, result.FlagValue)
+			fmt.Printf("Run %2d/%d: %s -> %s\n", i+1, config.NumRuns, result.Region, result.FlagValue)
 		}
 
 		// Sleep before next run (except for the last run)
@@ -231,13 +231,13 @@ func printSummary(stats *RunStats) {
 
 	fmt.Println("\nSummary:")
 
-	// Print unique countries
-	countries := make([]string, 0, len(stats.Countries))
-	for country := range stats.Countries {
-		countries = append(countries, country)
+	// Print unique regions
+	regions := make([]string, 0, len(stats.Regions))
+	for region := range stats.Regions {
+		regions = append(regions, region)
 	}
-	sort.Strings(countries)
-	fmt.Printf("Countries: %v\n", countries)
+	sort.Strings(regions)
+	fmt.Printf("Regions: %v\n", regions)
 
 	// Print unique flag values
 	flagValues := make([]string, 0, len(stats.FlagValues))
@@ -247,11 +247,11 @@ func printSummary(stats *RunStats) {
 	sort.Strings(flagValues)
 	fmt.Printf("Flag values: %v\n", flagValues)
 
-	// Print country distribution
-	fmt.Println("\nCountry distribution:")
-	for _, country := range countries {
-		count := stats.Countries[country]
+	// Print region distribution
+	fmt.Println("\nRegion distribution:")
+	for _, region := range regions {
+		count := stats.Regions[region]
 		percentage := float64(count) / float64(stats.SuccessfulRuns) * 100
-		fmt.Printf("  %s: %2d (%5.1f%%)\n", country, count, percentage)
+		fmt.Printf("  %s: %2d (%5.1f%%)\n", region, count, percentage)
 	}
 }

@@ -68,9 +68,9 @@ go build -o runner runner.go
 The app:
 - Initializes the OpenFeature API with the Confidence Provider
 - Generates a random visitor ID for each run (using UUID v4)
-- Randomly selects a country code from 3 options (US, SE, GB)
-- Creates an evaluation context with both the visitor ID and country
-- Fetches the value of a feature flag called `nicklas-test-flag` using OpenFeature
+- Randomly selects a region from 3 options (na, eu, asia)
+- Creates an evaluation context with both the visitor ID and region
+- Fetches the value of a feature flag called `show-enterprise-plan.price` using OpenFeature
 - Prints the flag evaluation details
 
 ## Sample Output
@@ -78,7 +78,7 @@ The app:
 ### Single Evaluation
 ```
 Visitor ID: d106896d-313e-460f-8ca3-add190df11be
-Country: US
+Region: na
 Feature flag value: default
 ```
 
@@ -87,32 +87,32 @@ Feature flag value: default
 Starting 5 feature flag evaluations...
 Sleep interval: 1-25 milliseconds
 ==================================================
-Run  1/5: Country=SE | Flag=default  | Visitor=45ebc191... | Time=14:54:47
+Run  1/5: Region=eu | Flag=Let's Talk   | Visitor=45ebc191... | Time=14:54:47
     Sleeping for 12.3 milliseconds...
 
-Run  2/5: Country=US | Flag=default  | Visitor=4cec2cc1... | Time=14:54:47
+Run  2/5: Region=na | Flag=default      | Visitor=4cec2cc1... | Time=14:54:47
     Sleeping for 8.7 milliseconds...
 
-Run  3/5: Country=GB | Flag=default  | Visitor=3d3889b7... | Time=14:54:47
+Run  3/5: Region=asia | Flag=default    | Visitor=3d3889b7... | Time=14:54:47
 ==================================================
 Completed 5 successful evaluations out of 5 attempts
 
 Summary:
-Countries: [GB SE US]
-Flag values: [default]
+Regions: [asia eu na]
+Flag values: [Let's Talk default]
 
-Country distribution:
-  GB:  1 ( 33.3%)
-  SE:  1 ( 33.3%)
-  US:  1 ( 33.3%)
+Region distribution:
+  asia:  1 ( 20.0%)
+  eu:  2 ( 40.0%)
+  na:  2 ( 40.0%)
 ```
 
 ## Configuration
 
 - **API Key**: Stored securely in `.env` file (not committed to git)
-- **Flag Name**: Set to `nicklas-test-flag.message` in the code
+- **Flag Name**: Set to `show-enterprise-plan.price` in the code
 - **Default Values**: Returns `"default"` when the flag is not configured or accessible
-- **Country Codes**: Randomly selects from: `US`, `SE`, `GB`
+- **Regions**: Randomly selects from: `na`, `eu`, `asia` (matching flag targeting rules)
 
 ### Environment Variables
 
