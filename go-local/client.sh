@@ -161,7 +161,7 @@ fi
 # Check if service is running
 if ! curl -s "${BASE_URL}/health" > /dev/null 2>&1; then
     echo -e "${RED}Error: Service is not running at ${BASE_URL}${NC}"
-    echo -e "${YELLOW}Start the service with: go run service.go${NC}"
+    echo -e "${YELLOW}Start the service with: go run ./cmd/service${NC}"
     exit 1
 fi
 

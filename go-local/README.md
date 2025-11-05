@@ -34,36 +34,36 @@ A Go application demonstrating local feature flag evaluation using the [OpenFeat
 ## Running the Apps
 
 This demo includes two programs:
-1. **main.go** - Command-line tool for running multiple evaluations
-2. **service.go** - HTTP service for on-demand flag evaluation
+1. **cmd/cli** - Command-line tool for running multiple evaluations
+2. **cmd/service** - HTTP service for on-demand flag evaluation
 
-### Command-Line Tool (main.go)
+### Command-Line Tool (cmd/cli)
 
 The app runs multiple feature flag evaluations based on the `-n` argument.
 
 **Basic usage:**
 ```bash
-GOTOOLCHAIN=go1.24.9 go run main.go -n 10          # Run 10 evaluations (default, verbose)
-GOTOOLCHAIN=go1.24.9 go run main.go -n 25          # Run 25 evaluations
+GOTOOLCHAIN=go1.24.9 go run ./cmd/cli -n 10          # Run 10 evaluations (default, verbose)
+GOTOOLCHAIN=go1.24.9 go run ./cmd/cli -n 25          # Run 25 evaluations
 ```
 
 **Quiet mode for compact output:**
 ```bash
-GOTOOLCHAIN=go1.24.9 go run main.go -n 20 -q       # Compact output
+GOTOOLCHAIN=go1.24.9 go run ./cmd/cli -n 20 -q       # Compact output
 ```
 
 **View all options:**
 ```bash
-GOTOOLCHAIN=go1.24.9 go run main.go -h
+GOTOOLCHAIN=go1.24.9 go run ./cmd/cli -h
 ```
 
-### HTTP Service (service.go)
+### HTTP Service (cmd/service)
 
 The service exposes an HTTP endpoint for on-demand feature flag evaluation with visitor-specific context.
 
 **Start the service:**
 ```bash
-GOTOOLCHAIN=go1.24.9 go run service.go
+GOTOOLCHAIN=go1.24.9 go run ./cmd/service
 ```
 
 The service will start on port 8080 (configurable via `PORT` environment variable) and expose:
@@ -198,8 +198,11 @@ CONFIDENCE_CLIENT_SECRET=your_client_secret_here
 
 ```
 go-local/
-├── main.go              # Command-line tool for batch evaluations
-├── service.go           # HTTP service for on-demand evaluations
+├── cmd/
+│   ├── cli/
+│   │   └── main.go      # Command-line tool for batch evaluations
+│   └── service/
+│       └── main.go      # HTTP service for on-demand evaluations
 ├── client.sh            # Bash script to test the HTTP service
 ├── go.mod               # Go module dependencies
 ├── go.sum               # Go module checksums (generated)
