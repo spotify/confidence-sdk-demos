@@ -31,7 +31,13 @@ A Go application demonstrating local feature flag evaluation using the [OpenFeat
    - **API Client ID & Secret**: OAuth credentials for syncing flag configurations
    - **Client Secret**: Used for local flag resolution
 
-## Running the App
+## Running the Apps
+
+This demo includes two programs:
+1. **main.go** - Command-line tool for running multiple evaluations
+2. **service.go** - HTTP service for on-demand flag evaluation
+
+### Command-Line Tool (main.go)
 
 The app runs multiple feature flag evaluations based on the `-n` argument.
 
@@ -51,7 +57,59 @@ GOTOOLCHAIN=go1.24.9 go run main.go -n 20 -q       # Compact output
 GOTOOLCHAIN=go1.24.9 go run main.go -h
 ```
 
-## What it does
+### HTTP Service (service.go)
+
+The service exposes an HTTP endpoint for on-demand feature flag evaluation with visitor-specific context.
+
+**Start the service:**
+```bash
+GOTOOLCHAIN=go1.24.9 go run service.go
+```
+
+The service will start on port 8080 (configurable via `PORT` environment variable) and expose:
+- `GET /evaluate?region=<region>` - Evaluate flags (requires `X-Visitor-ID` header)
+- `GET /health` - Health check endpoint
+
+**Using the client script:**
+
+A bash script `client.sh` is provided to easily test the service:
+
+```bash
+# Run 5 random requests (default)
+./client.sh
+
+# Run 10 requests with 2 second intervals
+./client.sh -n 10 -s 2
+
+# Test a specific region
+./client.sh -r eu -n 3
+
+# View all options
+./client.sh -h
+```
+
+**Manual curl example:**
+```bash
+# Generate a visitor ID and make a request
+VISITOR_ID=$(uuidgen | tr '[:upper:]' '[:lower:]')
+curl -H "X-Visitor-ID: $VISITOR_ID" \
+     "http://localhost:8080/evaluate?region=eu"
+```
+
+**Example response:**
+```json
+{
+  "visitor_id": "d7515baf-6d3d-44b2-a569-764d91d5f83e",
+  "region": "eu",
+  "flag_value": "Let's Talk",
+  "message": "Enterprise plan price for region 'eu': Let's Talk",
+  "timestamp": "2025-11-05T09:18:05+01:00"
+}
+```
+
+## What They Do
+
+### Command-Line Tool
 
 The app:
 - Initializes the OpenFeature API with the local Confidence Provider
@@ -61,6 +119,16 @@ The app:
 - Creates an evaluation context with both the visitor ID and region
 - Fetches the value of a feature flag called `show-enterprise-plan.price` using OpenFeature
 - Prints the flag evaluation details and statistics
+
+### HTTP Service
+
+The service:
+- Runs continuously as an HTTP server
+- Accepts requests with visitor ID in the header and region as a query parameter
+- Evaluates feature flags on-demand for each request
+- Uses the local WebAssembly provider for zero-latency evaluation
+- Periodically syncs flag configurations in the background
+- Returns JSON responses with flag values and metadata
 
 ## Sample Output
 
@@ -130,7 +198,9 @@ CONFIDENCE_CLIENT_SECRET=your_client_secret_here
 
 ```
 go-local/
-├── main.go              # Single runner program with configurable evaluations
+├── main.go              # Command-line tool for batch evaluations
+├── service.go           # HTTP service for on-demand evaluations
+├── client.sh            # Bash script to test the HTTP service
 ├── go.mod               # Go module dependencies
 ├── go.sum               # Go module checksums (generated)
 ├── .env                 # Environment variables (create this, not in git)

@@ -13,6 +13,7 @@
 *.out
 go-local-demo
 runner
+service
 
 # Go workspace file
 go.work
