@@ -16,7 +16,7 @@ public class OpenFeatureConfig {
     public void initializeOpenFeature() {
         // Configure OpenFeature provider with Confidence on application startup
         ConfidenceFeatureProvider provider = new ConfidenceFeatureProvider(
-                Confidence.builder("BEFwpwAWFupTtxEyt7ukdIc5hwAC7Lxc")
+                Confidence.builder("ofQ5I97NrLyORWHRACpDYPRphlLviCyU")
         );
         OpenFeatureAPI.getInstance().setProviderAndWait(provider);
     }

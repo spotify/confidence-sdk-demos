@@ -31,7 +31,7 @@ pnpm install
 3. Set up environment variables:
 Create a `.env.local` file in the root directory and add the following Confidence client secret:
 ```
-NEXT_PUBLIC_CLIENT_SECRET=BEFwpwAWFupTtxEyt7ukdIc5hwAC7Lxc
+NEXT_PUBLIC_CLIENT_SECRET=ofQ5I97NrLyORWHRACpDYPRphlLviCyU
 ```
 This will connect the project to an existing Confidence demo account with pre-configured feature flags that are used in the application.
 
