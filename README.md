@@ -1,5 +1,7 @@
 # confidence-web-demo 
 
+hi
+
 This repository demonstrates how Confidence can be used in a simple project.
 
 ## Examples
