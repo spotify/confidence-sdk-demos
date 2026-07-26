@@ -1,33 +1,13 @@
 package com.confidence.subscriptionapi.service;
 
 import com.confidence.subscriptionapi.model.Plan;
-import dev.openfeature.sdk.Client;
-import dev.openfeature.sdk.EvaluationContext;
-import dev.openfeature.sdk.ImmutableContext;
-import dev.openfeature.sdk.Value;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import dev.openfeature.sdk.Structure;
 
-import java.util.Map;
-
-import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class PlanService {
-
-    private final Client openFeatureClient;
-
-    @Autowired
-    public PlanService(Client openFeatureClient) {
-        this.openFeatureClient = openFeatureClient;
-    }
-
-    final Plan enterprisePlan = new Plan(3L, "Enterprise", "Enterprise plan for large organizations", "$49.99", "monthly",
-            List.of("eu", "na"),
-            List.of("Unlimited users", "500GB storage", "24/7 phone support", "Custom integrations", "SLA"));
 
     private final List<Plan> plans = List.of(
         new Plan(1L, "Basic", "Basic plan with essential features", "$9.99", "monthly",
@@ -56,44 +36,8 @@ public class PlanService {
                 List.of("Unlimited users", "1TB storage", "24/7 support", "Global features", "Multi-region"))
     );
 
-    public List<Plan> getPlans(String region, HttpServletRequest request) {
-        String visitorId = request.getHeader("X-VISITOR-ID");
-        if (visitorId == null || visitorId.trim().isEmpty()) {
-            visitorId = "anonymous";
-        }
-        Client client = openFeatureClient;
-        Map<String, Value> contextAttributes = Map.of(
-                "visitor_id", new Value(visitorId),
-                "region", new Value(region != null ? region : "unknown")
-        );
-        EvaluationContext context = new ImmutableContext(visitorId, contextAttributes);
-        
-        Value flagValue = client.getObjectValue(
-                "show-enterprise-plan",
-                new Value(Structure.mapToStructure(Map.of("enabled", false))),
-                context
-                );
-
+    public List<Plan> getPlans(String region) {
         List<Plan> resultPlans = new java.util.ArrayList<>(plans);
-
-        Map<String, Value> flagValueMap = flagValue.asStructure().asMap();
-        if (flagValueMap.get("enabled").asBoolean()) {
-            String enterprisePrice = flagValueMap.containsKey("price") && flagValueMap.get("price") != null
-                    ? flagValueMap.get("price").asString()
-                    : enterprisePlan.getPrice();
-
-            Plan dynamicEnterprisePlan = new Plan(
-                    enterprisePlan.getId(),
-                    enterprisePlan.getName(),
-                    enterprisePlan.getDescription(),
-                    enterprisePrice,
-                    enterprisePlan.getBillingCycle(),
-                    enterprisePlan.getRegions(),
-                    enterprisePlan.getFeatures()
-            );
-
-            resultPlans.add(dynamicEnterprisePlan);
-        }
 
         // Apply region filtering to final result
         if (region == null || region.isEmpty()) {

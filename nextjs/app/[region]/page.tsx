@@ -14,20 +14,14 @@ export default async function Page(props: { params: Promise<{ region: string }> 
     region: params.region,
   }
 
-  const [showEnterprisePlan, subscriptionHighlight] = await Promise.all([
-    client.getObjectValue<{ enabled: boolean, price: string }>('show-enterprise-plan', {
-      enabled: false,
-      price: '-',
-    }, context),
-    client.getBooleanValue('subscription-highlight.enabled', false, context)
-  ]);
+  const subscriptionHighlight = await client.getBooleanValue('subscription-highlight.enabled', false, context);
 
   return (
     <>
       <hr className="border-neutral-200 mx-12" />
       <section id="plans" className="max-w-7xl mx-auto py-12">
         <h2 className="text-3xl text-center font-bold mb-8">Choose a plan</h2>
-        <div className={`grid md:grid-cols-2 gap-8 mb-20 ${showEnterprisePlan.enabled ? 'lg:grid-cols-4' : 'lg:grid-cols-3'}`}>
+        <div className="grid md:grid-cols-2 gap-8 mb-20 lg:grid-cols-3">
           <SubscriptionCard
             plan="Basic"
             price="$9"
@@ -64,20 +58,6 @@ export default async function Page(props: { params: Promise<{ region: string }> 
               'Advanced analytics',
             ]}
           />
-
-          {showEnterprisePlan.enabled && (
-            <SubscriptionCard
-              plan="Enterprise"
-              price={showEnterprisePlan.price}
-              features={[
-                'All Premium features',
-                'Unlimited usage',
-                'Dedicated account manager',
-                'Custom solutions',
-                'SLA guarantee',
-              ]}
-            />
-          )}
         </div>
       </section>
     </>
