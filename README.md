@@ -9,3 +9,6 @@ See the Next.js demo: [nextjs/](./nextjs/)
 
 ### Java Spring Boot
 See the Java Spring Boot demo: [java/](./java/)
+
+## Reporting Bugs
+Please report any bugs to bugs@example.com.
