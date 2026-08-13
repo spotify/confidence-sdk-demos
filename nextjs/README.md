@@ -1,4 +1,4 @@
-# Confidence Web Demo
+# ConfidenceWebDemo
 
 This project is an example application that showcases the implementation of [Confidence js SDK](https://github.com/spotify/confidence-sdk-js) using [OpenFeature](https://openfeature.dev/) in a Next.js project using the App Router (bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app)). It demonstrates how to integrate feature flags into a web application with server-side rendering using a fictional software subscription website. 
 
